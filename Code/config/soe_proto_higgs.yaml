@@ -1,0 +1,47 @@
+logging.path: "./lightning_logs/ablation_merge/${dataset.name}/${model.nn.backbone.merge}"
+logging.name: "model=${model._target_}-backbone=${model.nn.backbone._target_}-lr=${model.optimizer.lr}-width=${model.nn.backbone.layer_width}-layers=${model.nn.backbone.num_layers}-protoBlocks=${model.nn.backbone.num_blocks_stage}-protoWidth=${model.nn.backbone.layer_width_stage}-norm=${model.nn.backbone.norm_inputs}-seed=${random.seed}-p${dataset.aux_feat_prob}"
+
+dataset._target_: dataset.HiggsDataModule
+dataset.name: "HIGGS"
+dataset.num_workers: 1
+dataset.persistent_workers: True
+dataset.batch_size: 1
+dataset.aux_feat_prob: 0.99 #!!python/tuple [0.01,0.05,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.95,0.99]
+
+random.seed: !!python/tuple [0,1,2,3,4]
+
+trainer.max_epochs: 1
+trainer.log_every_n_steps: 1
+trainer.devices: 1
+trainer.accelerator: 'cpu'
+trainer.fast_dev_run: False
+
+model._target_: model.OnlineDeltaMix
+model.loss._target_: torch.nn.CrossEntropyLoss
+model.nn.backbone.merge: !!python/tuple ["sum", "mul", "soft", "ens", "moe"]
+
+model.nn.backbone.variance: 0.001
+model.nn.backbone._target_: modules.KalmanMLPproto2
+model.nn.backbone.size_in: 1
+model.nn.backbone.size_in_MLP: 21
+model.nn.backbone.num_layers: 3
+model.nn.backbone.layer_width: 250
+### model.nn.backbone.layer_width_enc: !!python/tuple [512, 1024]
+# model.nn.backbone.layer_width_stage: !!python/tuple [128, 250]
+# model.nn.backbone.num_blocks_stage: !!python/tuple [3, 6]
+# model.nn.backbone.norm_inputs: !!python/tuple [True, False]
+model.nn.backbone.layer_width_stage: 250
+model.nn.backbone.num_blocks_stage: 6
+model.nn.backbone.norm_inputs: False
+# model.nn.backbone.norm_inputs: True
+# model.nn.backbone.layer_width_stage: 512
+# model.nn.backbone.num_blocks_stage: 3
+# model.nn.backbone.norm_inputs: True
+
+model.nn.backbone.n_classes: 2
+model.nn.backbone.size_out: 2
+model.nn.backbone.dropout: 0.3
+
+model.optimizer._target_: torch.optim.SGD
+# model.optimizer.lr: !!python/tuple [0.005, 0.001, 0.01, 0.05, 0.1]
+model.optimizer.lr: 0.005

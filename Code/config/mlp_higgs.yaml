@@ -1,0 +1,33 @@
+logging.path: "./lightning_logs/mlp/${dataset.name}"
+logging.name: "model=${model._target_}-backbone=${model.nn.backbone._target_}-lr=${model.optimizer.lr}-width=${model.nn.backbone.layer_width}-layers=${model.nn.backbone.num_layers}-loss=${model.loss._target_}-seed=${random.seed}-p${dataset.aux_feat_prob}"
+
+dataset._target_: dataset.HiggsDataModule
+dataset.name: "HIGGS"
+dataset.num_workers: 1
+dataset.persistent_workers: True
+dataset.batch_size: 1
+dataset.aux_feat_prob: !!python/tuple [0.01,0.05,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.95,0.99]
+
+random.seed: !!python/tuple [0,1,2]
+
+trainer.max_epochs: 1
+trainer.log_every_n_steps: 1
+trainer.devices: 1
+trainer.accelerator: 'cpu'
+trainer.fast_dev_run: False
+
+model._target_: model.OnlineMLP
+model.loss._target_: torch.nn.CrossEntropyLoss
+
+model.nn.backbone._target_: modules.MLP
+model.nn.backbone.size_in: 21
+model.nn.backbone.num_layers: 3
+model.nn.backbone.layer_width: 250
+model.nn.backbone.n_classes: 2
+model.nn.backbone.size_out: 2
+model.nn.backbone.dropout: 0.3
+
+model.optimizer._target_: torch.optim.SGD
+model.optimizer.lr: 0.0001
+
+# taskset -c "0-4" python run_hydra.py --config=config/fast_odl_german.yaml
