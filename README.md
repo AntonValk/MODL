@@ -30,14 +30,14 @@ But first, download the data. Note that cifar-10 is available from pytorch and i
 ```
 To obtain the reported results for MODL run the following commands (each one command corresponds to one dataset)
 ```
-python run_hydra.py --config=configssoe_proto_german.yaml
-python run_hydra.py --config=configssoe_proto_svm.yaml
-python run_hydra.py --config=configssoe_proto_magic.yaml
-python run_hydra.py --config=configssoe_proto_a8a.yaml
-python run_hydra.py --config=configssoe_proto_higgs.yaml
-python run_hydra.py --config=configssoe_proto_susy.yaml
-python run_hydra.py --config=configssoe_proto_imnist.yaml
-python run_hydra.py --config=configssoe_proto_cifar.yaml
+python run_hydra.py --config=configs/soe_proto_german.yaml
+python run_hydra.py --config=configs/soe_proto_svm.yaml
+python run_hydra.py --config=configs/soe_proto_magic.yaml
+python run_hydra.py --config=configs/soe_proto_a8a.yaml
+python run_hydra.py --config=configs/soe_proto_higgs.yaml
+python run_hydra.py --config=configs/soe_proto_susy.yaml
+python run_hydra.py --config=configs/soe_proto_imnist.yaml
+python run_hydra.py --config=configs/soe_proto_cifar.yaml
 ```
 
 The results can be viewed on tensorboard by selecting appropriate ./lightning_logs/<dataset_name> directory
