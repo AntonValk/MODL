@@ -40,4 +40,8 @@ python run_hydra.py --config=configssoe_proto_imnist.yaml
 python run_hydra.py --config=configssoe_proto_cifar.yaml
 ```
 
-The results can be viewed tensorboard logging of appropriate ./lightning_logs/<dataset_name> directory
+The results can be viewed on tensorboard by selecting appropriate ./lightning_logs/<dataset_name> directory
+
+```
+tensorboard --logdir ./lightning_logs/<dataset_name>
+```
