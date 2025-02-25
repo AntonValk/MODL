@@ -1,5 +1,17 @@
 # MODL
-MODL: Multilearner Online Deep Learning
+MODL: Multilearner Online Deep Learning (Accepted AISTATS 2025)
+
+### BibTex Citation
+```
+@inproceedings{
+valkanas2025modl,
+title={{MODL}: Multilearner Online Deep Learning},
+author={Antonios Valkanas and Boris N. Oreshkin and Mark Coates},
+booktitle={The 28th International Conference on Artificial Intelligence and Statistics},
+year={2025},
+url={https://openreview.net/forum?id=WspiEX6v3r}
+}
+```
 
 # Using this repository
 
