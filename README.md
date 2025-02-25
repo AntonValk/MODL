@@ -1,7 +1,8 @@
 # MODL
 MODL: Multilearner Online Deep Learning (Accepted AISTATS 2025)
 
-### BibTex Citation
+### Citation
+If you use MODL or the code base in any way (such as running experiments) please cite paper: 
 ```
 @inproceedings{
 valkanas2025modl,
