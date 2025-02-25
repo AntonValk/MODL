@@ -22,7 +22,7 @@ url={https://openreview.net/forum?id=WspiEX6v3r}
 
 ```cd workspace```
 
-```git clone [ANOYNYMOUS LINK]```
+```git clone https://github.com/AntonValk/MODL```
 
 ## Build docker image and launch container 
 ```
